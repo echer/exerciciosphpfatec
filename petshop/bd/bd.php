@@ -5,12 +5,10 @@ class RepositorioClientes {
     private $conexao;
     
     public function __construct() {
-        $conexao = new PDO('mysql:dbname=petshop;host=127.0.0.1;charset=UTF8',
-            'usu_petshop', '123456');
-        $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $conexao->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        
-        $this->conexao = $conexao;
+        //$this->conexao = new PDO('mysql:dbname=petshop;host=127.0.0.1;charset=UTF8', 'usu_petshop', '123456');
+        $this->conexao = new PDO('mysql:dbname=petshop;host=172.17.0.2;charset=UTF8', 'root', '123456');
+        $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->conexao->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
     
     public function listar_clientes($nome_pesquisa) {
@@ -25,13 +23,24 @@ class RepositorioClientes {
         return $consulta->fetchAll();
     }
 
+    public function buscar($id) {
+        $consulta = $this->conexao->prepare("
+                                                select * from clientes
+                                                where codigo = ?
+                                            ");
+
+        $consulta->execute([$id]);
+
+        return $consulta->fetch();
+    }
+
     public function salvar($cliente) {
         // ...
         
-        $consulta->execute([
+        /*$consulta->execute([
             $this['nome'],
             $this['telefone']
-        ]);
+        ]);*/
 
     }
 }

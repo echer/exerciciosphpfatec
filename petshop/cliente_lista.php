@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/bd/bd.php';
 
-$nome_pesquisa = $_REQUEST['nome'] ?? '';
+$nome_pesquisa = isset($_REQUEST['nome']) ? $_REQUEST['nome'] : '';
 
 // padrão Repositório
 $repoClientes = new RepositorioClientes();
