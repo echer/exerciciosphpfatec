@@ -33,6 +33,12 @@ class RepositorioClientes {
 
         return $consulta->fetch();
     }
+    public function atualizar($codigo,$nome,$telefone) {
+        $consulta = $this->conexao->prepare("update clientes set nome = ?, telefone = ? where codigo = ?");
+
+        $consulta->execute([$nome, $telefone, $codigo]);
+
+    }
 
     public function salvar($cliente) {
         // ...

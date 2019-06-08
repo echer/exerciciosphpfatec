@@ -2,16 +2,16 @@
 
 require_once __DIR__ . '/bd/bd.php';
 
+$repoClientes = new RepositorioClientes();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // requisição POST, salva os dados e depois
     // carrega para mostrar o resultado
-    
+    $repoClientes->atualizar($_GET["codigo"],$_POST["nome"],$_POST["telefone"]);
+    $cliente = $repoClientes->buscar($_GET["codigo"]);
     
 } else {
-    $clientesObj = new Cliente();
     // requisição GET, apenas carrega dados para mostrar
-    //$cliente = ['nome' => 'teste', 'telefone' => ''];
-    $repoClientes = new RepositorioClientes();
     $cliente = $repoClientes->buscar($_GET["codigo"]);
 }
 
