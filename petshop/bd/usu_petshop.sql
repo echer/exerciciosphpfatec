@@ -1,0 +1,3 @@
+GRANT USAGE ON *.* TO 'usu_petshop'@'localhost' IDENTIFIED BY PASSWORD '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9';
+
+GRANT ALL PRIVILEGES ON `petshop`.* TO 'usu_petshop'@'localhost';
